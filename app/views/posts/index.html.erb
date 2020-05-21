@@ -1,0 +1,10 @@
+<h1>All products</h1>
+
+<% @posts.each do |post| %>
+
+    <li> <%= link_to "#{post.product.name}", post_path(post.id) %></li>
+    <li> Price Per Unit: <%=  post.price_per_unit %> </li>
+    <li> <%= post.units_available %> </li>
+    <li> <%= post.city %> </li>
+    <li> <%= post.state %> </li>
+<% end %>
