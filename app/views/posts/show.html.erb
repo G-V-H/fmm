@@ -1,14 +1,24 @@
 <%= image_tag @post.picture if @post.picture.attached? %>
-    <h2> <%= @post.product.name %> </h2>
-    <li> Price per unit: <%= @post.price_per_unit %> </li>
-    <li> Units available: <%= @post.units_available %> </li>
-    <li> City: <%= @post.city %> </li>
-    <li> State: <%= @post.state %> </li>
-    <%= form_with model: @post, url: destroy_post_path, local: true, method: "delete" do |form| %>
-        <% if current_user.id == @post.user_id %>
-            <%= submit_tag "delete" %>
-            <button><%= link_to "edit", edit_post_path(@post.id) %> </button>
-        <% end %> 
+<h2> <%= @post.product.name %> </h2>
+<li> Price per unit: <%= @post.price_per_unit %> </li>
+<li> Units available: <%= @post.units_available %> </li>
+<li> City: <%= @post.city %> </li>
+<li> State: <%= @post.state %> </li>
+<%= form_with model: @post, url: destroy_post_path, local: true, method: "delete" do |form| %>
+    <% if current_user.id == @post.user_id %>
+        <%= submit_tag "delete" %>
+        <button><%= link_to "edit", edit_post_path(@post.id) %> </button>
+    <% end %> 
+<% end %>
+
+<%= form_with model: @message, url: create_message_path, local: true, method: "post" do |form| %>
+
+    <%= form.label :"Contact the seller here"%>
+    <%= form.text_field :text_field %>
+    
+    <%= form.hidden_field :post_id, :value => @post.id %>
+    <%= submit_tag "submit" %>
+
 <% end %>
 
 <%= form_with model: @review, url: create_review_path, local: true, method: "post" do |form| %>

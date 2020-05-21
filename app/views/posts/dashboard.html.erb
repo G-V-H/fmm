@@ -1,0 +1,20 @@
+<h1>My Dashboard</h1>
+
+<% @posts.each do |post| %>
+    <% if current_user.id == post.user_id %>
+        <h2> <%= link_to "#{post.product.name}", post_path(post.id) %> </h2>
+        <li> Price per unit: <%= post.price_per_unit %> </li>
+        <li> Units available: <%= post.units_available %> </li>
+        <% @messages.each do |mes| %>
+            <% if post.id == mes.post_id %>
+                <h2> Messages Received </h2>
+                <li> <%= User.find(mes.user_id).email %> : <%= mes.content %> </li>
+                <%= form_with model: @messages, url: destroy_message_path(mes.id), local: true, method: "delete" do |form| %>
+
+                    <%= submit_tag "delete" %>
+
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>

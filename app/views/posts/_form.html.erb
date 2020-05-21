@@ -25,7 +25,7 @@
     </div>
     <div >
         <%= f.label :state %>
-        <%= f.text_field :state, value: post.state %>
+        <%= f.select(:state, options_for_select([['ACT', 'ACT'], ['NSW', 'NSW'], ['NT', 'NT'], ['QLD', 'QLD'], ['TAS', 'TAS'], ['VIC', 'VIC'], ['WA', 'WA']])) %>
     </div>
     <div>
         <%= f.label :picture %> 

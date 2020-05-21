@@ -11,27 +11,6 @@ class PostsController < ApplicationController
 
     def show
         @reviews = Review.all
-        # session = Stripe::Checkout::Session.create(
-        #     payment_method_types: ['card'],
-        #     customer_email: current_user.email,
-        #     line_items: [{
-        #         name: @post.title,
-        #         description: @post.description,
-        #         amount: @post.deposit * 100,
-        #         currency: 'aud',
-        #         quantity: 1,
-        #     }],
-        #     payment_intent_data: {
-        #         metadata: {
-        #             user_id: current_user.id,
-        #             post_id: @post.id
-        #         }
-        #     },
-        #     success_url: "#{root_url}payments/success?userId=#{current_user.id}&postId=#{@post.id}",
-        #     cancel_url: "#{root_url}posts"
-        # )
-    
-        # @session_id = session.id
     end
 
     def new
@@ -53,7 +32,6 @@ class PostsController < ApplicationController
         
     end
 
-
     def update
         @post = Post.update(params["id"], post_params)
         if @post.errors.any?
@@ -66,6 +44,15 @@ class PostsController < ApplicationController
 
     def destroy
         @tbd = Post.find(params[:id]).destroy
+        redirect_to posts_path
+    end
+
+    def dashboard
+        @posts = Post.all
+        @messages = Message.all
+    end
+
+    def redirect
         redirect_to posts_path
     end
 
