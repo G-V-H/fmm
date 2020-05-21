@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_003001) do
+ActiveRecord::Schema.define(version: 2020_05_21_052335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_003001) do
 
   create_table "posts", force: :cascade do |t|
     t.bigint "product_id"
-    t.integer "price_per_unit"
+    t.money "price_per_unit", scale: 2
     t.integer "units_available"
     t.string "city"
     t.string "state"

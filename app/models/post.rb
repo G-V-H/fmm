@@ -3,5 +3,5 @@ class Post < ApplicationRecord
   validates :product_id, :price_per_unit, :units_available, :city, :state, presence: true
   has_one_attached :picture
   belongs_to :user
-  has_many :notes, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 end
